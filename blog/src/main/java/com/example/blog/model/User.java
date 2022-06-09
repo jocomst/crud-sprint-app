@@ -5,20 +5,24 @@ import java.util.List;
 
 @Entity
 @Table(name = "authors")
-public class Author {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Long id;
 
     @Column
-    private String name;
+    private String username;
 
     @Column
     private String email;
 
     @Column
-    private String url;
+    private String password;
+
+    @Column
+    @OneToMany(mappedBy = "id")
+    private List<BlogPost> posts;
 
     public Long getId() {
         return id;
@@ -28,14 +32,13 @@ public class Author {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String firstName) {
+        this.username = firstName;
     }
-
     public String getEmail() {
         return email;
     }
@@ -44,12 +47,12 @@ public class Author {
         this.email = email;
     }
 
-    public String getUrl() {
-        return url;
+    public String getPassword() {
+        return password;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public List<BlogPost> getPosts() {
@@ -59,9 +62,4 @@ public class Author {
     public void setPosts(List<BlogPost> posts) {
         this.posts = posts;
     }
-
-    @Column
-    @OneToMany(mappedBy = "author")
-    private List<BlogPost> posts;
-
 }

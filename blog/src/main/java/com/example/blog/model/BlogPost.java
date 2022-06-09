@@ -22,12 +22,8 @@ public class BlogPost {
     @Column(columnDefinition = "TEXT")
     private String content;
 
-    @Column(length = 150)
-    private String synopsis;
-
     @ManyToOne
-    @JoinColumn(name = "author_id")
-    private Author author;
+    private User user;
 
     @Column
     @Convert(converter = Jsr310JpaConverters.LocalDateConverter.class)
@@ -57,20 +53,12 @@ public class BlogPost {
         this.content = content;
     }
 
-    public String getSynopsis() {
-        return synopsis;
+    public User getAuthor() {
+        return user;
     }
 
-    public void setSynopsis(String synopsis) {
-        this.synopsis = synopsis;
-    }
-
-    public Author getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(Author author) {
-        this.author = author;
+    public void setAuthor(User user) {
+        this.user = user;
     }
 
     public LocalDateTime getDateTime() {
