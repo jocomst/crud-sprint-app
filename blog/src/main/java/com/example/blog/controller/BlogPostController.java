@@ -14,6 +14,6 @@ public class BlogPostController {
     //display all posts
     @GetMapping("/")
     public String home() {
-        return "index";
+        return "home";
     }
 }
