@@ -58,42 +58,26 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
     <div class="p-2 "></div>
     <div class="p-2 "></div>
 </div>
-<h1>Posts</h1>
-<div class="card rounded-4  d-grid gap-3 mx-auto" style="width: 75%; ">
-    <div class="card-body rounded-4 border border-dark  " >
-        <div class="card-header bg-transparent border-success">User</div>
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-        <div class="card-footer bg-transparent border-success">Footer
+<h1>Home</h1>
+<div class="card rounded-4  d-grid gap-3 mx-auto" style="width: 75%">
+
+    <div th:each="p : ${latest3posts}">
+    <div class="card-body rounded-4 border border-dark" >
+        <div class="card-header bg-transparent border-dark" th:text="${p.user}" >
+            User
+        </div>
+        <h5 class="card-title" th:text="${p.title}">
+            Special title treatment</h5>
+        <p class="card-text content" th:utext="${p.content}">
+            With supporting text below as a natural lead-in to additional content.</p>
+        <a href="#" class="btn btn-primary">
+            Go somewhere</a>
+        <div class="card-footer bg-transparent border-dark date" th:text="${#dates.format(p.dateTime, 'dd-MMM-yyyy')}">Footer
             <b th:text="${execInfo.now.time}"></b>
         </div>
     </div>
-    <div class="card-body rounded-4 border border-dark  ">
-        <div class="card-header bg-transparent border-success">User</div>
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-        <div class="card-footer bg-transparent border-success">Footer
-            <b th:text="${execInfo.now.time}"></b>
-        </div>
     </div>
-    <div class="card-body rounded-4 border border-dark ">
-        <div class="card-header bg-transparent border-success">User</div>
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-        <div class="card-footer bg-transparent border-success">Footer
-            <b th:text="${execInfo.now.time}"></b>
-        </div>
-    </div>
-
-
-
 </div>
-
-Now is: <b th:text="${execInfo.now.time}"></b>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 
 
 <br>
@@ -104,5 +88,7 @@ Now is: <b th:text="${execInfo.now.time}"></b>
     <a href="/" th:href="@{/logout}">Logout</a>
 </div>
 
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
 </html>

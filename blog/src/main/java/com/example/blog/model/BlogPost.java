@@ -5,6 +5,7 @@ import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Table(name = "posts")
@@ -26,8 +27,19 @@ public class BlogPost {
     private User user;
 
     @Column
-    @Convert(converter = Jsr310JpaConverters.LocalDateConverter.class)
-    private LocalDateTime dateTime;
+//    @Convert(converter = Jsr310JpaConverters.LocalDateConverter.class)
+    private Date dateTime = new Date();
+
+    public BlogPost(Long id, String title, String content, User user) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.user = user;
+    }
+
+    public BlogPost() {
+
+    }
 
     public Long getId() {
         return id;
@@ -53,19 +65,26 @@ public class BlogPost {
         this.content = content;
     }
 
-    public User getAuthor() {
+    public User getUser() {
         return user;
     }
 
-    public void setAuthor(User user) {
+    public void setUser(User user) {
         this.user = user;
     }
 
-    public LocalDateTime getDateTime() {
+    public Date getDateTime() {
+
         return dateTime;
     }
 
-    public void setDateTime(LocalDateTime dateTime) {
+    public void setDateTime(Date dateTime) {
+
         this.dateTime = dateTime;
+    }
+
+    @Override
+    public String toString(){
+        return "hi";
     }
 }
