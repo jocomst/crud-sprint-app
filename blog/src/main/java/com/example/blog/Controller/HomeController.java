@@ -13,19 +13,19 @@ import java.util.stream.Collectors;
 
 @Controller
     public class HomeController {
-
-    @Autowired
-    private BlogPostService blogPostService;
-    @GetMapping("/")
-    public String home(Model model) {
-        List<BlogPost> latest5Posts = blogPostService.findLatest5();
-        model.addAttribute( "latest5posts", latest5Posts);
-
-        List<BlogPost> latest3Posts = latest5Posts.stream()
-                .limit(3).collect(Collectors.toList());
-        model.addAttribute("latest3posts",latest3Posts);
-        return "home";
-    }
+//
+//    @Autowired
+//    private BlogPostService blogPostService;
+//    @GetMapping("/")
+//    public String home(Model model) {
+//        List<BlogPost> latest5Posts = blogPostService.findLatest5();
+//        model.addAttribute( "latest5posts", latest5Posts);
+//
+//        List<BlogPost> latest3Posts = latest5Posts.stream()
+//                .limit(3).collect(Collectors.toList());
+//        model.addAttribute("latest3posts",latest3Posts);
+//        return "home";
+//    }
 
 
 //        @GetMapping("/logout")
