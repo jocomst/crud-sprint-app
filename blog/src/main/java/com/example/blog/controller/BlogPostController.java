@@ -44,7 +44,7 @@ public class BlogPostController {
 //    }
 
     @RequestMapping("/posts/User/{id}")
-    public String view(@PathVariable("id") Long id, Model model) {
+    public String User(@PathVariable("id") Long id, Model model) {
         BlogPost post = blogPostService.findById(id);
         if (post == null) {
             notifyService.addErrorMessage("Cannot find post #" + id);
@@ -54,14 +54,25 @@ public class BlogPostController {
         return "posts/user";
     }
 
-    @GetMapping("/deletepost/{id}")
-    public String delete(@PathVariable (value = "id") long id) {
+    @RequestMapping("/posts/User")
+    public String User(Model model) {
+        List<BlogPost> latest5Posts = blogPostService.findLatest5();
+        model.addAttribute( "latest5posts", latest5Posts);
+        return "/posts/User";
+    }
 
-        // call delete employee method
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable (value = "id") long id) {
         this.blogPostService.deleteById(id);
         return "redirect:/";
     }
-
+//    @GetMapping("/editblogpost/{id}")
+//    public String editblogpost(Model model) {
+//        // create model attribute to bind form data
+//        BlogPost blogPost = new BlogPost();
+//        model.addAttribute("blogPost", blogPost);
+//        return "editpost";
+//    }
     @PostMapping("/editpost")
     public String edit(@ModelAttribute("BlogPost") BlogPost post) {
         // save employee to database

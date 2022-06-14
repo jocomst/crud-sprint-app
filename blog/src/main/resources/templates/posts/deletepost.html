@@ -1,12 +1,8 @@
-<!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
-    <link th:href="@{/CSS/Style.css}" type="text/css" rel="stylesheet" >
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
 <div class="WIN" >
@@ -22,7 +18,7 @@
         <div class="nav nav-pills nav-fill" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" th:href="@{/}" >Home</a>
+                    <a class="nav-link active" aria-current="page" th:href="@{/static}" >Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{users/login}">Login</a>
@@ -58,28 +54,26 @@
     <div class="p-2 "></div>
     <div class="p-2 "></div>
 </div>
-<h1>Posts</h1>
-<div class="card rounded-4  d-grid gap-3 mx-auto" style="width: 75%">
-    <div th:each="p : ${latest5posts}">
-        <div class="card-body rounded-4 border border-dark" >
-            <div class="card-header bg-transparent border-dark" th:if="${p.user}" >
+<header>Are you sure you want to delete this Post?</header>
+<div class="card-body rounded-4 border border-dark" >
+    <div th:each="p : ${latest3posts}">
+    <div class="card-header bg-transparent border-dark" th:if="${p.user}" >
             <span th:text="${p.user.fullName != null ?
                         p.user.fullName : p.user.username}">User</span>
-            </div>
-            <h5 class="card-title" th:text="${p.title}">
-                Special title treatment</h5>
-            <p class="card-text content" th:utext="${p.content}">
-                With supporting text below as a natural lead-in to additional content.</p>
-            <a th:href="@{/deletepost}"  class="btn btn-primary">
-                Delete</a>
-            <a  th:href="@{/editpost}" class="btn btn-primary">
-                Edit</a>
-            <div class="card-footer bg-transparent border-dark date" th:text="${#dates.format(p.dateTime, 'dd-MMM-yyyy')}">Footer
-
-            </div>
-        </div>
     </div>
-</div>
+    <h5 class="card-title" th:text="${p.title}">
+        Special title treatment</h5>
+    <p class="card-text content" th:utext="${p.content}">
+        With supporting text below as a natural lead-in to additional content.</p>
+    <div class="card-footer bg-transparent border-dark date" th:text="${#dates.format(p.dateTime, 'dd-MMM-yyyy')}">Footer
+        <b th:text="${execInfo.now.time}"></b>
+    </div>
 
+    <a href="/delete/{id}(id=${p.id})}" class="btn btn-primary">
+        Delete
+    </a>
+    <button> Cancel </button>
+</div>
+</div>
 </body>
 </html>
