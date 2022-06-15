@@ -19,15 +19,20 @@ public class BlogPostServiceJpaImp implements BlogPostService {
 
         @Autowired
         private BlogPostRepository postRepo;
-
+    @Override
+    public List<BlogPost> getAllBlogPosts() {
+        return postRepo.findAll();
+    }
     @Override
         public List<BlogPost> findAll() {
-            return this.postRepo.findAll();
+
+        return this.postRepo.findAll();
         }
 
         @Override
         public List<BlogPost> findLatest5() {
-            return this.postRepo.findLatest5();
+
+        return this.postRepo.findLatest5();
         }
 
 //        @Override
@@ -47,8 +52,9 @@ public class BlogPostServiceJpaImp implements BlogPostService {
         }
 
     @Override
-    public BlogPost create(BlogPost post) {
-        return null;
+    public void create(BlogPost post) {
+
+       postRepo.save(post);
     }
 
     @Override
@@ -59,6 +65,7 @@ public class BlogPostServiceJpaImp implements BlogPostService {
 
     @Override
     public void deleteById(Long id) {
+
         this.postRepo.deleteById(id);
     }
 

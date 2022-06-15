@@ -38,10 +38,10 @@ public class BlogPostController {
 //        return "logout";
 //    }
 //
-//    @GetMapping("/login")
-//    public String login() {
-//        return "login";
-//    }
+    @GetMapping("/login")
+    public String login() {
+        return "/users/login";
+    }
 
     @RequestMapping("/posts/User/{id}")
     public String User(@PathVariable("id") Long id, Model model) {
@@ -93,6 +93,13 @@ public class BlogPostController {
         // save employee to database
         blogPostService.edit(post);
         return "redirect:/posts/user";
+    }
+
+    @GetMapping("/showNewPostForm")
+    public String showNewPostForm(Model model) {
+        BlogPost blogPost = new BlogPost();
+        model.addAttribute("blogPost", blogPost);
+        return "new_post";
     }
 
 }
