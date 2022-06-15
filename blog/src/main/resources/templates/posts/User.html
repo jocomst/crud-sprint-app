@@ -11,7 +11,7 @@
 <body>
 <div class="WIN" >
     <!--<img src="../static/IMG/angryimg.png" width="200" th:src="@{IMG/angryimg.jpg}" >-->
-    <img src="../static/IMG/site-logo_whiteCFT.png"  th:src="@{/IMG/site-logo_whiteCFT.png}">
+    <img src="../static/IMG/site-logo_whiteCFT.png"  th:src="@{/IMG/site-logo_whiteCFT.png}" alt="CFT Hub Logo">
 </div>
 <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
@@ -22,32 +22,47 @@
         <div class="nav nav-pills nav-fill" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" th:href="@{/}" >Home</a>
+                    <a class="nav-link active" aria-current="page" th:href="@{/}">Home</a>
+                </li>
+                <li class="nav-item" >
+                    <button type="button" class="btn btn-primary">
+                        <a class="nav-link" th:href="@{/users/login}">Login</a>
+                    </button>
+                </li>
+                <li class="nav-item" >
+                    <button type="button" class="btn btn-primary" >
+                        <a class="nav-link" href="#">Register</a>
+                    </button>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{users/login}">Login</a>
+                    <button type="button" class="btn btn-primary" >
+                        <a class="nav-link" th:href="@{/posts/User}">Posts</a>
+                    </button>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link"th:href="@{/logout}"></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled">Misc</a>
+                    <button type="button" class="btn btn-primary" >
+                        <a class="nav-link" th:href="@{/logout}">Logout</a>
+                    </button>
                 </li>
             </ul>
-            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                <button type="button" class="btn btn-primary">1</button>
-                <button type="button" class="btn btn-primary">2</button>
+            <!--         <div class="form-group">-->
+            <!--            <button type="button" class="btn btn-primary" >-->
+            <!--             <a href="/" th:href="@{/logout}">Logout</a>-->
+            <!--            </button>-->
+            <!--            </div>-->
+            <!--            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">-->
+            <!--                <button type="button" class="btn btn-primary">1</button>-->
+            <!--                <button type="button" class="btn btn-primary">2</button>-->
 
-                <div class="btn-group" role="group">
-                    <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                        Dropdown
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                        <li><a class="dropdown-item" href="#">Dropdown link</a></li>
-                        <li><a class="dropdown-item" href="#">Dropdown link</a></li>
-                    </ul>
-                </div>
-            </div>
+            <!--                <div class="btn-group" role="group">-->
+            <!--                    <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">-->
+            <!--                        Dropdown-->
+            <!--                    </button>-->
+            <!--                    <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">-->
+            <!--                        <li><a class="dropdown-item" href="#">Logout</a></li>-->
+            <!--                        <li><a class="dropdown-item" href="#">Dropdown link</a></li>-->
+            <!--                    </ul>-->
+            <!--                </div>-->
         </div>
     </div>
 </nav>
