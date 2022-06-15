@@ -51,14 +51,14 @@
          http.authorizeRequests().antMatchers("/").permitAll()
          .antMatchers(
          "/registration",
-         "/js/",
-         "/css/",
-         "/img/**").permitAll()
+         "/JS/**",
+         "/CSS/**",
+         "/IMG/**").permitAll()
          .anyRequest().authenticated()
          .and()
          .formLogin()
          .loginPage("/login")
-         .defaultSuccessUrl("/")
+         .defaultSuccessUrl("/posts/User")
          .permitAll()
          .and()
          .logout()
