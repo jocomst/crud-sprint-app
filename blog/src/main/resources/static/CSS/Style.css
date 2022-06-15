@@ -11,18 +11,24 @@
 }
 
 img{
-    margin: auto;
-    margin-top: 5%;
+    /*width: 200px;*/
+    margin: 3% auto auto;
     display: block;
     width: 35%;
-    height: 70%;
-    image-rendering: smooth;
+    height: 85%;
 
 }
+
+/*#CFT {*/
+/*    width: 200px;*/
+/*}*/
 
 h1{
     z-index: 5;
     /*opacity: 100%;*/
 }
 
-
+.formError {
+    color: red;
+    font-style: italic;
+}
