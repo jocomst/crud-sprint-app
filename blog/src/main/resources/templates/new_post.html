@@ -1,26 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>New Blog Post</title>
+    <link th:href="@{/CSS/Style.css}" type="text/css" rel="stylesheet" >
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 </head>
 <body>
-<div class="cfh" >
-    <!--<img src="../static/IMG/angryimg.png" width="200" th:src="@{IMG/angryimg.jpg}" >-->
-<!--    <img src="../static/IMG/Screenshot_2022-06-09_150728WIN_Program-removebg-preview.png"  th:src="@{/IMG/Screenshot_2022-06-09_150728WIN_Program-removebg-preview.png}" >-->
+<div class="WIN" >
+    <img src="../static/IMG/site-logo_whiteCFT.png"  th:src="@{/IMG/site-logo_whiteCFT.png}" alt="CFT Hub Logo">
 </div>
 <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">WIN</a>
+        <a class="navbar-brand" href="#"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="nav nav-pills nav-fill" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" th:href="@{/posts/User.html}">Home</a>
-                </li>
                 <li class="nav-item">
                     <button type="button" class="btn btn-primary" >
                         <a class="nav-link" th:href="@{/posts/User}">Posts</a>
@@ -42,6 +41,9 @@
 </nav>
 
 <div class="d-grid gap-3">
+    <div class="p-2 "></div>
+    <div class="p-2 "></div>
+    <div class="p-2 "></div>
     <div class="p-2 "></div>
     <div class="p-2 "></div>
     <div class="p-2 "></div>

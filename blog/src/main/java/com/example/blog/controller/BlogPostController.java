@@ -40,11 +40,16 @@ public class BlogPostController {
 
     @GetMapping("/login")
     public String login() {
+
         return "users/login";
     }
-//    @RequestMapping("/posts/User") {
-//
-//    }
+
+    @RequestMapping("users/login")
+    public String userlogin() {
+
+        return "redirect:/posts/User";
+    }
+
 
     @RequestMapping("/posts/User/{id}")
     public String User(@PathVariable("id") Long id, Model model) {
@@ -74,6 +79,15 @@ public class BlogPostController {
 //        //this.blogPostService.deleteById(id);
 //        return "redirect:/posts/User";
 //    }
+//
+//    @GetMapping("/deletepost/{id}")
+//        public String delete(@PathVariable("id") Long id, Model model){
+//        BlogPost blogPost = blogPostService.findById(id);
+//        model.addAttribute("blogPost", blogPost);
+//        return "/deletepost";
+//    }
+
+
 
     @RequestMapping("deletepost/{id}")
         public String saveDelete(@PathVariable("id") Long id, Model model) {
@@ -104,5 +118,7 @@ public class BlogPostController {
         model.addAttribute("blogPost", blogPost);
         return "new_post";
     }
+
+
 
 }
