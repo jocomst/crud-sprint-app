@@ -5,39 +5,36 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>User Home Page</title>
-    <link th:href="@{/CSS/Style.css}" type="text/css" rel="stylesheet" >
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link th:href="@{/CSS/Style.css}" type="text/css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 </head>
 <body>
-<div class= "WIN" >
+<div class="WIN">
     <img src="../static/IMG/site-logo_whiteCFT.png" th:src="@{/IMG/site-logo_whiteCFT.png}" alt="CFT Hub Logo">
 </div>
 <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
         <a class="navbar-brand" href="#"></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="nav nav-pills nav-fill" id="navbarNav">
             <ul class="navbar-nav">
-<!--                <li class="nav-item">-->
-<!--                    <button>-->
-<!--                    <a class="nav-link active" aria-current="page" th:href="@{/}" >Home</a>-->
-<!--                    </button>-->
-<!--                </li>-->
                 <li class="nav-item">
-                    <button type="button" class="btn btn-primary" >
+                    <button type="button" class="btn btn-primary">
                         <a class="nav-link" th:href="@{/posts/User}">Posts</a>
                     </button>
                 </li>
                 <li class="nav-item">
-                    <button>
-                    <a class="nav-link" th:href="@{showNewPostForm}">New Post</a>
+                    <button type="button">
+                        <a class="nav-link" th:href="@{showNewPostForm}">New Post</a>
                     </button>
                 </li>
                 <li class="nav-item">
-                    <button>
-                        <a class="nav-link"th:href="@{/logout}">Logout</a>
+                    <button type="button">
+                        <a class="nav-link" th:href="@{/logout}">Logout</a>
                     </button>
                 </li>
             </ul>
@@ -52,11 +49,11 @@
     <div class="p-2 "></div>
     <div class="p-2 "></div>
 </div>
-<h1>Posts</h1>
+<h1 class="d-flex justify-content-center">Posts</h1>
 <div class="card rounded-4  d-grid gap-3 mx-auto" style="width: 75%">
     <div th:each="p : ${latestfiveposts}">
-        <div class="card-body rounded-4 border border-dark" >
-            <div class="card-header bg-transparent border-dark" th:if="${p.user}" >
+        <div class="card-body rounded-4 border border-dark">
+            <div class="card-header bg-transparent border-dark" th:if="${p.user}">
             <span th:text="${p.user.fullName != null ?
                         p.user.fullName : p.user.username}">User</span>
             </div>
@@ -64,11 +61,12 @@
                 Special title treatment</h5>
             <p class="card-text content" th:utext="${p.content}">
                 With supporting text below as a natural lead-in to additional content.</p>
-            <a th:href="@{/deleteById/{id}(id=${p.id})}"  class="btn btn-primary">
+            <a th:href="@{/deleteById/{id}(id=${p.id})}" class="btn btn-primary">
                 Delete</a>
-            <a  th:href="@{/editpost/{id}(id=${p.id})}" class="btn btn-primary">
+            <a th:href="@{/editpost/{id}(id=${p.id})}" class="btn btn-primary">
                 Edit</a>
-            <div class="card-footer bg-transparent border-dark date" th:text="${#dates.format(p.dateTime, 'dd-MMM-yyyy')}">Footer
+            <div class="card-footer bg-transparent border-dark date"
+                 th:text="${#dates.format(p.dateTime, 'dd-MMM-yyyy')}">Footer
 
             </div>
         </div>
