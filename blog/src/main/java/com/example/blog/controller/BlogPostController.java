@@ -1,4 +1,4 @@
-package com.example.blog.controller;
+package com.example.blog.Controller;
 
 
 import com.example.blog.model.BlogPost;
