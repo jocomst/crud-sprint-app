@@ -1,10 +1,12 @@
-package com.example.blog.Controller;
+package com.example.blog.controller;
 
 
 import com.example.blog.model.BlogPost;
+import com.example.blog.repository.UserRepository;
 import com.example.blog.service.BlogPostService;
 import com.example.blog.service.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +20,9 @@ public class BlogPostController {
 
     @Autowired
     private BlogPostService blogPostService;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Autowired
     private NotificationService notifyService;
@@ -80,21 +85,30 @@ public class BlogPostController {
 //        return "redirect:/posts/User";
 //    }
 //
-//    @GetMapping("/deletepost/{id}")
-//        public String delete(@PathVariable("id") Long id, Model model){
-//        BlogPost blogPost = blogPostService.findById(id);
-//        model.addAttribute("blogPost", blogPost);
-//        return "/deletepost";
+
+//
+//
+//    @RequestMapping("deletepost/{id}")
+//        public String saveDelete(@PathVariable("id") Long id, Model model) {
+//     BlogPost blogPost = blogPostService.findById(id);
+//     model.addAttribute("blogPost", blogPost);
+//     return "redirect:/posts/User";
+//
 //    }
 
+    @GetMapping("/deleteById/{id}")
+    public String deleteById(@PathVariable (value = "id") Long id) {
+        blogPostService.deleteById(id);
+        return "redirect:/posts/User";
+    }
 
 
-    @RequestMapping("deletepost/{id}")
-        public String saveDelete(@PathVariable("id") Long id, Model model) {
-     BlogPost blogPost = blogPostService.findById(id);
-     model.addAttribute("blogPost", blogPost);
-     return "redirect:/posts/User";
-
+    @PostMapping("/create")
+    public String createPost(@ModelAttribute("blogPost") BlogPost blogPost) {
+        String name = SecurityContextHolder.getContext().getAuthentication().getName();
+        blogPost.setUser(userRepository.findByUsername(name));
+        blogPostService.create(blogPost);
+        return "redirect:/posts/User";
     }
 
 
@@ -109,7 +123,7 @@ public class BlogPostController {
     public String edit(@ModelAttribute("BlogPost") BlogPost post) {
         // save employee to database
         blogPostService.edit(post);
-        return "redirect:/posts/user";
+        return "redirect:/posts/User";
     }
 
     @GetMapping("posts/showNewPostForm")

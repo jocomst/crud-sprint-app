@@ -37,10 +37,6 @@ public class BlogPostServiceJpaImp implements BlogPostService {
         return this.postRepo.findLatest5();
     }
 
-//        @Override
-//        public BlogPost findById(Long id) {
-//            return null;
-//        }
 
     @Override
     public BlogPost findById(Long id) {
@@ -55,7 +51,6 @@ public class BlogPostServiceJpaImp implements BlogPostService {
 
     @Override
     public void create(BlogPost post) {
-
         postRepo.save(post);
     }
 
@@ -67,8 +62,7 @@ public class BlogPostServiceJpaImp implements BlogPostService {
 
     @Override
     public void deleteById(Long id) {
-
-        this.postRepo.deleteById(id);
+        postRepo.deleteById(id);
     }
 
 }
