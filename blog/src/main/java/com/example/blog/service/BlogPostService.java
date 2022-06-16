@@ -9,10 +9,12 @@ public interface BlogPostService {
     List<BlogPost> getAllBlogPosts();
     List<BlogPost> findAll();
     List<BlogPost> findLatest5();
-    BlogPost findById(Long id);
-    BlogPost create(BlogPost post);
 
-    BlogPost edit(BlogPost post);
+    BlogPost findById(Long id);
+
+    void create(BlogPost post);
+
+     BlogPost edit(BlogPost post);
 
     void deleteById(Long id);
 }
