@@ -14,7 +14,7 @@ public interface BlogPostService {
 
     void create(BlogPost post);
 
-     BlogPost edit(BlogPost post);
+    BlogPost edit(BlogPost post);
 
     void deleteById(Long id);
 }
