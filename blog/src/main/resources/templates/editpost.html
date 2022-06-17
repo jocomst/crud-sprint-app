@@ -49,6 +49,8 @@
             <span th:text="${blogPost.user.fullName != null ?
                         blogPost.user.fullName : blogPost.user.username}">User</span>
             </div>
+
+            <!-- Removed $ and added * in front of id -->
             <input type="hidden" th:field="*{id}">
             <h5 class="card-title" th:text="${blogPost.title}"></h5>
             <input type="text" th:field="*{title}" class="form-control mb-4 col-4">
