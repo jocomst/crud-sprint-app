@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>User Home Page</title>
+    <link th:href="@{/CSS/Style.css}" type="text/css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<body>
+<div class="WIN">
+    <img src="../static/IMG/site-logo_whiteCFT.png" th:src="@{/IMG/site-logo_whiteCFT.png}" alt="CFT Hub Logo">
+</div>
+<nav class="navbar navbar-expand-lg bg-light, topbanner">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="nav nav-pills nav-fill" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-link">
+                    <button type="button" class="btn btn-warning">
+                        <a class="nav-link" th:href="@{/posts/User}">Posts</a>
+                </li>
+                <li class="nav-link">
+                    <button type="button" class="btn btn-warning">
+                        <a class="nav-link" th:href="@{showNewPostForm}">New Post</a>
+                </li>
+                <li class="nav-link">
+                    <button type="button" class="btn btn-warning">
+                        <a class="nav-link" th:href="@{/logout}">Logout</a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+<div class="d-grid gap-3">
+    <div class="p-2 "></div>
+    <div class="p-2 "></div>
+    <div class="p-2 "></div>
+    <div class="p-2 "></div>
+    <div class="p-2 "></div>
+</div>
+<h1>Posts</h1>
+<div class="card rounded-4  d-grid gap-3 mx-auto" style="width: 75%" >
+    <div th:each="p : ${latestfiveposts}">
+        <div class="card-body rounded-4 border border-dark" id="card" >
+            <div class="card-header bg-transparent border-dark" th:if="${p.user}">
+            <span th:text="${p.user.fullName != null ?
+                        p.user.fullName : p.user.username}">User</span>
+            </div>
+            <h5 class="card-title" th:text="${p.title}">
+                Special title treatment</h5>
+            <p class="card-text content" th:utext="${p.content}">
+                With supporting text below as a natural lead-in to additional content.</p>
+            <a th:href="@{/deleteById/{id}(id=${p.id})}" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModalLong">
+                Delete</a>
+            <a th:href="@{/editpost/{id}(id=${p.id})}" class="btn btn-warning">
+                Edit</a>
+            <div class="card-footer bg-transparent border-dark date"
+                th:text="${#dates.format(p.dateTime, 'dd-MMM-yyyy')}">Footer
+
+            </div>
+        </div>
+        <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLong" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Confirm changes...</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        This post will be deleted FOREVER! Are you sure you want to delete this post?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Close</button>
+                        <a th:href="@{/deleteById/{id}(id=${p.id})}" class="btn btn-warning" >
+                            Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+</body>
+</html>
+
+
+<!-- <!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>User Home Page</title>
+    <link th:href="@{/CSS/Style.css}" type="text/css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<body>
+<div class="WIN">
+    <img src="../static/IMG/site-logo_whiteCFT.png" th:src="@{/IMG/site-logo_whiteCFT.png}" alt="CFT Hub Logo">
+</div>
+<nav class="navbar navbar-expand-lg bg-light, topbanner">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="nav nav-pills nav-fill" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <button type="button" class="btn btn-warning" >
+                        <a class="nav-link" th:href="@{/posts/User}">Posts</a>
+                </li>
+                <li class="nav-item">
+                    <button type="button" class="btn btn-warning">
+                        <a class="nav-link" th:href="@{showNewPostForm}">New Post</a>
+                </li>
+                <li class="nav-item">
+                    <button type="button" class="btn btn-warning">
+                        <a class="nav-link" th:href="@{/logout}">Logout</a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+<div class="d-grid gap-3">
+    <div class="p-2 "></div>
+    <div class="p-2 "></div>
+    <div class="p-2 "></div>
+    <div class="p-2 "></div>
+    <div class="p-2 "></div>
+</div>
+<h1>Posts</h1>
+<div class="card rounded-4  d-grid gap-3 mx-auto" style="width: 75%">
+    <div th:each="p : ${latestfiveposts}">
+        <div class="card-body rounded-4 border border-dark">
+            <div class="card-header bg-transparent border-dark" th:if="${p.user}">
+            <span th:text="${p.user.fullName != null ?
+                        p.user.fullName : p.user.username}">User</span>
+            </div>
+            <h5 class="card-title" th:text="${p.title}">
+                Special title treatment</h5>
+            <p class="card-text content" th:utext="${p.content}">
+                With supporting text below as a natural lead-in to additional content.</p>
+            <a th:href="@{/deleteById/{id}(id=${p.id})}" class="btn btn-warning">
+                Delete</a>
+            <a th:href="@{/editpost/{id}(id=${p.id})}" class="btn btn-warning">
+                Edit</a>
+            <div class="card-footer bg-transparent border-dark date"
+                 th:text="${#dates.format(p.dateTime, 'dd-MMM-yyyy')}">Footer
+            </div>
+        </div>
+        <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLong" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Confirm changes...</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to delete this post??
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <a th:href="@{/deleteById/{id}(id=${p.id})}" class="btn btn-primary" >
+                            Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html> -->
